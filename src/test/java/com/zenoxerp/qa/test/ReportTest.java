@@ -30,7 +30,8 @@ public class ReportTest extends SetUp{
 	{
 		initilization();
 		rep=new Reports(driver);
-		folderName=System.getProperty("user.dir")+"\\Downloads";
+	//	folderName=System.getProperty("user.dir")+"\\Downloads";
+	folderName="/var/www/html/Downloads";
 	
 		
 	}

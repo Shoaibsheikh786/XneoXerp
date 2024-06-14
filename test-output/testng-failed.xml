@@ -5,7 +5,7 @@
     <classes>
       <class name="com.zenoxerp.qa.test.ReportTest">
         <methods>
-          <include name="DymmYwhats"/>
+          <include name="DownloadExcel"/>
           <include name="tearDwon"/>
         </methods>
       </class> <!-- com.zenoxerp.qa.test.ReportTest -->

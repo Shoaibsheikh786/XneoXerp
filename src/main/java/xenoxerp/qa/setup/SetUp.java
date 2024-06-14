@@ -4,15 +4,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SetUp {
 	
@@ -59,11 +63,25 @@ public class SetUp {
 
     ChromeOptions options = new ChromeOptions();
     options.setExperimentalOption("prefs", prefs);
+    
+    DesiredCapabilities capabilities=new DesiredCapabilities();
+
+    // Create a new instance of the Chrome driver with the specified options
+    //http://3.95.160.237/ui/
+    capabilities.setBrowserName("chrome");
+    capabilities.setPlatform(Platform.LINUX);
+    
+    capabilities.setCapability(ChromeOptions.CAPABILITY, options);
 		
 		url=prop.getProperty("url");
 		username=prop.getProperty("username");
-		password=prop.getProperty("password");
-		driver=new ChromeDriver(options);
+		password=prop.getProperty("password");  //http://34.227.8.154/
+		try {
+			driver=new RemoteWebDriver(new URL("http://34.227.8.154"),capabilities);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.get(url);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
 		
